@@ -9,6 +9,7 @@
 
 %define 	module	elftools
 Summary:	Pure-Python library for parsing and analyzing ELF files
+Summary(pl.UTF-8):	Czysto pythonowa biblioteka do analizy plików ELF
 Name:		python-%{module}
 Version:	0.23
 Release:	1
@@ -35,14 +36,23 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 pyelftools is a pure-Python library for parsing and analyzing ELF
 files and DWARF debugging information.
 
+%description -l pl.UTF-8
+pyelftools to czysto pythonowa biblioteka do analizy plików ELF oraz
+informacji dla debuggera DWARF.
+
 %package -n python3-%{module}
 Summary:	Pure-Python library for parsing and analyzing ELF files
+Summary(pl.UTF-8):	Czysto pythonowa biblioteka do analizy plików ELF
 Group:		Libraries/Python
 Requires:	python3-modules
 
 %description -n python3-%{module}
 pyelftools is a pure-Python library for parsing and analyzing ELF
 files and DWARF debugging information.
+
+%description -n python3-%{module} -l pl.UTF-8
+pyelftools to czysto pythonowa biblioteka do analizy plików ELF oraz
+informacji dla debuggera DWARF.
 
 %prep
 %setup -q -n pyelftools-%{version}
@@ -84,6 +94,9 @@ rm -rf $RPM_BUILD_ROOT
 	--optimize=2 \
 	--root=$RPM_BUILD_ROOT
 %endif
+
+# readelf clone example
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/readelf.py
 
 %clean
 rm -rf $RPM_BUILD_ROOT
