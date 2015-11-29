@@ -19,7 +19,7 @@ Source0:	https://pypi.python.org/packages/source/p/pyelftools/pyelftools-%{versi
 # Source0-md5:	aa7cefa8bd2f63d7b017440c9084f310
 URL:		https://github.com/eliben/pyelftools
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 %if %{with python2}
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools
