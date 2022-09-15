@@ -11,15 +11,15 @@
 Summary:	Pure-Python library for parsing and analyzing ELF files
 Summary(pl.UTF-8):	Czysto pythonowa biblioteka do analizy plików ELF
 Name:		python-%{module}
-Version:	0.28
+Version:	0.29
 Release:	1
 License:	public domain
 Group:		Libraries/Python
-Source0:	https://pypi.python.org/packages/source/p/pyelftools/pyelftools-%{version}.tar.gz
-# Source0-md5:	2681e4603c42fe127a516f253abd8b6f
+Source0:	https://files.pythonhosted.org/packages/source/p/pyelftools/pyelftools-%{version}.tar.gz
+# Source0-md5:	2afc97cd239c0dea0cca97d00d3dcb42
 URL:		https://github.com/eliben/pyelftools
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
+BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
 BuildRequires:	python-devel
 BuildRequires:	python-setuptools
