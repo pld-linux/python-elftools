@@ -12,7 +12,7 @@ Summary:	Pure-Python library for parsing and analyzing ELF files
 Summary(pl.UTF-8):	Czysto pythonowa biblioteka do analizy plików ELF
 Name:		python-%{module}
 Version:	0.29
-Release:	2
+Release:	3
 License:	public domain
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/p/pyelftools/pyelftools-%{version}.tar.gz
