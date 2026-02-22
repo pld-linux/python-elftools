@@ -1,28 +1,29 @@
 #
 # Conditional build:
-%bcond_with	tests	# run tests (require some specific version of binutils)
+%bcond_with	tests	# test suite (requires some specific version of binutils)
 %bcond_without	python2 # CPython 2.x module
-%bcond_without	python3 # CPython 3.x module
+%bcond_with	python3 # CPython 3.x module (built from python3-elftools.spec)
 
 %define 	module	elftools
 Summary:	Pure-Python library for parsing and analyzing ELF files
 Summary(pl.UTF-8):	Czysto pythonowa biblioteka do analizy plików ELF
 Name:		python-%{module}
 Version:	0.29
-Release:	3
+Release:	4
 License:	public domain
 Group:		Libraries/Python
+#Source0Download: https://pypi.org/simple/pyelftools/
 Source0:	https://files.pythonhosted.org/packages/source/p/pyelftools/pyelftools-%{version}.tar.gz
 # Source0-md5:	2afc97cd239c0dea0cca97d00d3dcb42
 URL:		https://github.com/eliben/pyelftools
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
-BuildRequires:	python-devel
+BuildRequires:	python-devel >= 1:2.7
 BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
-BuildRequires:	python3-devel
+BuildRequires:	python3-devel >= 1:3.2
 BuildRequires:	python3-setuptools
 %endif
 %if %{with tests}
@@ -31,7 +32,7 @@ BuildRequires:	binutils
 # llvm-dwarfdump
 BuildRequires:	llvm
 %endif
-Requires:	python-modules
+Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,7 +48,7 @@ informacji dla debuggera DWARF.
 Summary:	Pure-Python library for parsing and analyzing ELF files
 Summary(pl.UTF-8):	Czysto pythonowa biblioteka do analizy plików ELF
 Group:		Libraries/Python
-Requires:	python3-modules
+Requires:	python3-modules >= 1:3.2
 
 %description -n python3-%{module}
 pyelftools is a pure-Python library for parsing and analyzing ELF
