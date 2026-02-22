@@ -1,9 +1,6 @@
 #
-# TODO:
-#	- check why the tests fail
-#
 # Conditional build:
-%bcond_with	tests	# run tests
+%bcond_with	tests	# run tests (require some specific version of binutils)
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
 
@@ -27,6 +24,12 @@ BuildRequires:	python-setuptools
 %if %{with python3}
 BuildRequires:	python3-devel
 BuildRequires:	python3-setuptools
+%endif
+%if %{with tests}
+# readelf
+BuildRequires:	binutils
+# llvm-dwarfdump
+BuildRequires:	llvm
 %endif
 Requires:	python-modules
 BuildArch:	noarch
@@ -57,6 +60,13 @@ informacji dla debuggera DWARF.
 %prep
 %setup -q -n pyelftools-%{version}
 
+# prebuilt x86_64 binaries
+%{__rm} test/external_tools/{readelf,llvm-dwarfdump}
+%if %{with tests}
+ln -sf /usr/bin/readelf test/external_tools/readelf
+ln -sf /usr/bin/llvm-dwarfdump test/external_tools/llvm-dwarfdump
+%endif
+
 %build
 %if %{with python2}
 %py_build
@@ -67,7 +77,7 @@ informacji dla debuggera DWARF.
 %endif
 
 %if %{with python3}
-%py3_build %{?with_tests:test}
+%py3_build
 
 %if %{with tests}
 %{__python3} ./test/all_tests.py
